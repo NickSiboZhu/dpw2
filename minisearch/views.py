@@ -30,3 +30,6 @@ def home(request):
     mylist = zip(news, desc, img)
 
     return render(request, 'home.html', context={"mylist": mylist})
+
+def login(request):
+    return render(request, 'login.html')
