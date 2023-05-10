@@ -32,7 +32,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'minisearch'
+    'minisearch.apps.MinisearchConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -58,7 +58,7 @@ TEMPLATES = [
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
          'DIRS': [
             BASE_DIR / 'templates',  # Your original template directory
-            os.path.join(BASE_DIR, 'manager', 'templates'),  # Your teammate's template directory
+            os.path.join(BASE_DIR, 'minisearch', 'templates'),  # Your teammate's template directory
         ],
         'APP_DIRS': True,
         'OPTIONS': {
