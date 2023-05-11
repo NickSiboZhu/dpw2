@@ -1,6 +1,6 @@
 from django.shortcuts import render
-#from .search_call import search
-from newsapi import NewsApiClient
+from .search_call import search
+
 
 def search_index(request):
     return render(request,  'index.html')
