@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <title>News</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .navbar {
+            padding: 30px 20px;
+            background-color: white;
+        }
+        .logo {
+            max-width: 200px;
+            margin: 30px auto;
+        }
+        .search-form {
+            max-width: 500px;
+            margin: 20px auto;
+        }
+        .nav-link {
+            color: #000000;
+        }
+        .navbar-brand {
+            margin: auto;
+            font-size: 2rem;  /* Increase the font size here */
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'minisearch:search_view' %}">Home</a>
+            </li>
+        </ul>
+        <a class="navbar-brand" href="#">Get The latest news on our website</a>
+        <ul class="navbar-nav ml-auto">
+            <!-- Empty to balance the home button -->
+        </ul>
+    </nav>
+
+    <div class="container">
+        {% for new, des, i in mylist %}
+            <img src="{{ i }}" alt="">
+            <h1>news:</h1> {{ new }}
+            {{ value|linebreaks }}
+
+            <h4>description:</h4>{{ des }}
+            {{ value|linebreaks }}
+        {% endfor %}
+    </div>
+</body>
+</html>
