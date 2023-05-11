@@ -11,7 +11,8 @@
             font-family: Arial, sans-serif;
         }
         .navbar {
-            padding: 15px 20px;
+            padding: 1px 20px;  /* Adjust this to make the navigation bar smaller */
+            background-color: white;
         }
         .logo {
             max-width: 200px;
@@ -37,7 +38,7 @@
 
     <div class="container text-center">
         <img src="{% static "img/googlelogo_color_272x92dp.png" %}" class="logo" alt="Logo">
-        <form class="search-form" method="get">
+        <form class="search-form" method="get" action="{% url 'minisearch:search_results' %}">
             <div class="input-group">
                 <input type="search" class="form-control" name="keyword" placeholder="Keyword" aria-label="Keyword">
                 <div class="input-group-append">
@@ -46,26 +47,5 @@
             </div>
         </form>
     </div>
-
-    {% if results %}
-    <div class="txtCentrado margenSup20 grisDC">
-        <h3>We found {{ count }} result{{ count|pluralize }} for your search "<i>{{ search_term }}</i>", showing top hits according to TF-IDF score: </h3>
-    </div>
-    <div class="search results">
-        {% for mytuple in results %}
-        <div class="images">
-            <img src="{% static "img/score_icon.png" %}" hspace=5>{{ mytuple.0 }}
-            <img src="{% static "img/book_icon.png" %}" hspace="5">{{ mytuple.1 }}
-            <img src="{% static "img/linenum_icon.png" %}" hspace="5">{{ mytuple.2 }}
-            <img src="{% static "img/text_icon.png" %}" hspace="5">{{ mytuple.3 }}
-        </div>
-        <p></p>
-        {% endfor %}
-    </div>
-    {% elif not search_term %}
-    <h3>Insert your search here.</h3>
-    {% elif not results %}
-    <p>No results found.</p>
-    {% endif %}
 </body>
 </html>
