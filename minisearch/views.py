@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from .search_call import search
-from newsapi import NewsApiClient
+# from newsapi import NewsApiClient
+# from serpapi import BaiduSearch
 
 
 def search_index(request):
@@ -19,22 +20,45 @@ def search_results(request):
     return render(request, 'result.html', context)
 
 
+from serpapi import BaiduSearch
+
+from serpapi import BaiduSearch
+
 def news(request):
-    newsapi = NewsApiClient(api_key='867e32f683c34cd2a89ffd7be01ed367')
-    top = newsapi.get_top_headlines(sources='techcrunch')
+    params = {
+        "engine": "baidu",
+        "q": "小米",
+        "device": "mobile",
+        "api_key": "56cf54155fb9f8d738c3452372112c053c6218be01833cdb1be5d864289c9022"
+    }
 
-    l = top['articles']
-    desc = []
+    search = BaiduSearch(params)
+    results = search.get_dict()
+
+    # Print the results dictionary
+    print(results)
+
+    # Check if 'news_results' is in the dictionary before trying to access it
+    if 'news_results' in results:
+        news_results = results["news_results"]
+    else:
+        news_results = []  # If not, use an empty list
+
     news = []
+    desc = []
     img = []
+    link = []
 
-    for i in range(len(l)):
-        f = l[i]
-        news.append(f['title'])
-        desc.append(f['description'])
-        img.append(f['urlToImage'])
-    mylist = zip(news, desc, img)
+    for result in news_results:
+        news.append(result.get('title'))
+        desc.append(result.get('source'))
+        img.append(result.get('thumbnail'))
+        link.append(result.get('link'))
+
+    mylist = zip(news, desc, img, link)
 
     return render(request, 'news.html', context={"mylist": mylist})
+
+
 
 

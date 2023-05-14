@@ -5,7 +5,7 @@ import os, re, sys, math
 sc = SparkContext.getOrCreate(SparkConf())
 sql = SQLContext(sc)
 
-tfidf_RDD = sql.read.parquet('hdfs://ds-hdfs:9000/user/hduser/tmp/tfidf-1.3K500M').rdd.map(
+tfidf_RDD = sql.read.parquet('hdfs://dpw2-2130026221-sibozhu:9000/user/root/workshopOutput').rdd.map(
     lambda x: (x['_2'], (x['_1'], x['_3'])))
 
 
